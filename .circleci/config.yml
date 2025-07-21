@@ -71,13 +71,13 @@ jobs:
     executor:
       name: cypress/default
       node-version: 22.15.1
-    parallelism: 6
+    # parallelism: 6
     steps:
       - attach_workspace:
           at: ~/
       - cypress/run-tests:
           start-command: 'npm run start'
-          cypress-command: 'npx wait-on http://localhost:3000 && npx cypress run --parallel --record'
+          cypress-command: 'npx wait-on http://localhost:3000 && npx cypress'
 
   release:
     <<: *job-defaults
@@ -109,11 +109,11 @@ workflows:
             - build
             - Install & Persist To Workspace
       # Run Algolia scraper only on main.
-      - release:
-          name: 'Run Algolia scraper'
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - main
+      # - release:
+      #     name: 'Run Algolia scraper'
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
