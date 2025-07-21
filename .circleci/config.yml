@@ -77,7 +77,7 @@ jobs:
           at: ~/
       - cypress/run-tests:
           start-command: 'npm run start'
-          cypress-command: 'npx wait-on http://localhost:3000 && npx cypress'
+          cypress-command: 'npx wait-on http://localhost:3000 && npx cypress run'
 
   release:
     <<: *job-defaults
